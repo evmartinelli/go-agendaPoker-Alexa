@@ -1,22 +1,16 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/evmartinelli/go-agendaPoker-Alexa/alexa"
 )
 
-// func Handler(request alexa.Request) (alexa.Response, error) {
-// 	return IntentDispatcher(request), nil
-// }
+func Handler(request alexa.Request) (alexa.Response, error) {
+	return IntentDispatcher(request), nil
+}
 
 func main() {
 	lambda.Start(Handler)
-}
-
-func Handler() (string, error) {
-	return fmt.Sprintf("Hello World"), nil
 }
 
 func HandleFrontpageDealIntent(request alexa.Request) alexa.Response {
