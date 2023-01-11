@@ -24,15 +24,21 @@ func HandlePopularDealIntent(request alexa.Request) alexa.Response {
 func HandleHelpIntent(request alexa.Request) alexa.Response {
 	var builder alexa.SSMLBuilder
 	builder.Say("Aqui estão algumas coisas que você pode me perguntar:")
-	builder.Pause("1000")
+	builder.Pause("200")
 	builder.Say("Qual o torneio de hoje na H2?")
-	builder.Pause("1000")
+	builder.Pause("200")
 	builder.Say("Qual o horário do intervalo do torneio de hoje?")
 	return alexa.NewSSMLResponse("H2 Ajuda", builder.Build())
 }
 
 func HandleAboutIntent(request alexa.Request) alexa.Response {
-	return alexa.NewSimpleResponse("About", "Slick Dealer was created by Nic Raboy in Tracy, California as an unofficial Slick Deals application.")
+	var builder alexa.SSMLBuilder
+	builder.Say("Hoje 5K TRIPLE SHOT DIA UNICO")
+	builder.Pause("200")
+	builder.Say("Início 17:00")
+	builder.Pause("200")
+	builder.Say("Late register até 9º nível de blinds. Inscrições até 19:20")
+	return alexa.NewSSMLResponse("H2 Ajuda", builder.Build())
 }
 
 func IntentDispatcher(request alexa.Request) alexa.Response {
