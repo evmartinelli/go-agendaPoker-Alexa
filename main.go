@@ -1,16 +1,22 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/evmartinelli/go-agendaPoker-Alexa/alexa"
 )
 
-func Handler(request alexa.Request) (alexa.Response, error) {
-	return IntentDispatcher(request), nil
-}
+// func Handler(request alexa.Request) (alexa.Response, error) {
+// 	return IntentDispatcher(request), nil
+// }
 
 func main() {
 	lambda.Start(Handler)
+}
+
+func Handler() (string, error) {
+	return fmt.Sprintf("Hello World"), nil
 }
 
 func HandleFrontpageDealIntent(request alexa.Request) alexa.Response {
@@ -23,12 +29,12 @@ func HandlePopularDealIntent(request alexa.Request) alexa.Response {
 
 func HandleHelpIntent(request alexa.Request) alexa.Response {
 	var builder alexa.SSMLBuilder
-	builder.Say("Here are some of the things you can ask:")
+	builder.Say("Aqui estão algumas coisas que você pode me perguntar:")
 	builder.Pause("1000")
-	builder.Say("Give me the frontpage deals.")
+	builder.Say("Qual o torneio de hoje na H2?")
 	builder.Pause("1000")
-	builder.Say("Give me the popular deals.")
-	return alexa.NewSSMLResponse("Slick Dealer Help", builder.Build())
+	builder.Say("Qual o horário do intervalo do torneio de hoje?")
+	return alexa.NewSSMLResponse("H2 Ajuda", builder.Build())
 }
 
 func HandleAboutIntent(request alexa.Request) alexa.Response {

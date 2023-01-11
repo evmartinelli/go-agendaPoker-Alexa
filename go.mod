@@ -1,4 +1,4 @@
-module go-agendapoker
+module github.com/evmartinelli/go-agendaPoker-Alexa
 
 go 1.19
 
