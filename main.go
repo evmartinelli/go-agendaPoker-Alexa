@@ -32,28 +32,38 @@ func HandleHelpIntent(request alexa.Request) alexa.Response {
 }
 
 func HandleAboutIntent(request alexa.Request) alexa.Response {
+	return alexa.NewSimpleResponse("Popular Deals", "Popular deal data here")
+}
+
+func HandleDailyTournament(request alexa.Request) alexa.Response {
 	var builder alexa.SSMLBuilder
-	builder.Say("Hoje 5K TRIPLE SHOT DIA UNICO")
+	builder.Say("5K TRIPLE SHOT DIA UNICO")
 	builder.Pause("200")
 	builder.Say("Início 17:00")
+	builder.Pause("100")
+	builder.Say("Inscrições até 19:20")
+	builder.Pause("100")
+	return alexa.NewSSMLResponse("H2 Ajuda", builder.Build())
+}
+
+func HandleBreakTournament(request alexa.Request) alexa.Response {
+	var builder alexa.SSMLBuilder
+	builder.Say("5K TRIPLE SHOT DIA UNICO")
 	builder.Pause("200")
-	builder.Say("Late register até 9º nível de blinds. Inscrições até 19:20")
+	builder.Say("Inscrições até 19:20")
+	builder.Pause("100")
 	return alexa.NewSSMLResponse("H2 Ajuda", builder.Build())
 }
 
 func IntentDispatcher(request alexa.Request) alexa.Response {
 	var response alexa.Response
 	switch request.Body.Intent.Name {
-	case "FrontpageDealIntent":
-		response = HandleFrontpageDealIntent(request)
-	case "PopularDealIntent":
-		response = HandlePopularDealIntent(request)
-	case alexa.HelpIntent:
-		response = HandleHelpIntent(request)
 	case "AboutIntent":
 		response = HandleAboutIntent(request)
 	case "DailyTournament":
-		response = HandleAboutIntent(request)
+		response = HandleDailyTournament(request)
+	case "BreakTournament":
+		response = HandleBreakTournament(request)
 	default:
 		response = HandleAboutIntent(request)
 	}
